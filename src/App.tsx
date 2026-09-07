@@ -105,7 +105,7 @@ const App: FC = () => {
 
           {/* SECONDARY — ИИ Сабақтар (PREMIUM CARD) */}
           <a
-            href="https://wa.me/77000957565?text=%D0%A1%C3%99%D0%BB%D0%B5%D0%BC%21+%D0%96%D0%B0%D1%81%D0%B0%D0%BD%D0%B4%D0%B0+%D0%B6%D0%B0%D1%81%D0%B0%D0%BB%D0%BC%D0%B0%D2%9B%D1%88%D1%8B+%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%DB%AF%2C+%D0%96%D0%98+%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE+%D0%B6%D0%B0%D1%81%D0%B0%D0%BF+%D2%AF%D0%B9%D1%80%D0%B5%D0%BD%D0%B3%DB%B3%D0%BC+%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%DB%B3%21+%F0%9F%9A%80"
+            href="https://wa.me/77000957565?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%21+%D0%96%D0%B0%D1%81%D0%B0%D0%BD%D0%B4%D1%8B+%D0%B8%D0%BD%D1%82%D0%B5%D0%BB%D0%BB%D0%B5%D0%BA%D1%82+%D0%B0%D1%80%D2%9B%D1%8B%D0%BB%D1%8B+%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE+%D0%B6%D0%B0%D1%81%D0%B0%D0%BF+%D2%AF%D0%B9%D1%80%D0%B5%D0%BD%D0%B3%D1%96%D0%BC+%F0%9F%9A%80"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-full overflow-hidden group"
