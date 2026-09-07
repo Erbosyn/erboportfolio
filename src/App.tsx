@@ -2,16 +2,14 @@ import type { FC, ReactNode } from "react";
 import {
   MessageCircle,
   BookOpen,
-  ExternalLink,
   User,
   Sparkles,
   Smartphone,
-  Star,
   ChevronRight,
+  CheckCircle2
 } from "lucide-react";
 
-/* ─── Custom SVG Icons (not available in Lucide) ─── */
-
+/* ─── Custom SVG Icons ─── */
 const TikTokIcon: FC<{ className?: string }> = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z" />
@@ -42,324 +40,179 @@ const PlayStoreIcon: FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-/* ─── Reusable Link Button Component ─── */
-
-interface LinkButtonProps {
-  href: string;
-  children: ReactNode;
-  variant?: "primary" | "secondary" | "card";
-  className?: string;
-}
-
-const LinkButton: FC<LinkButtonProps> = ({
-  href,
-  children,
-  variant = "secondary",
-  className = "",
-}) => {
-  const base =
-    "flex items-center justify-center gap-3 w-full rounded-2xl font-semibold transition-all duration-300 ease-out cursor-pointer select-none";
-
-  const variants = {
-    primary:
-      "bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 px-6 text-base glow-green hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-green-500/30",
-    secondary:
-      "bg-[#1a1a2e] border border-[#2a2a4a] text-gray-200 py-3.5 px-6 text-sm hover:bg-[#22223a] hover:border-purple-500/40 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-purple-500/10",
-    card: "bg-[#12121a] border border-[#1e1e34] text-gray-300 py-3 px-5 text-sm hover:bg-[#1a1a2e] hover:border-[#3a3a5a] hover:scale-[1.01] active:scale-[0.98]",
-  };
-
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${base} ${variants[variant]} ${className}`}
-    >
-      {children}
-    </a>
-  );
-};
-
-/* ─── Section Header Component ─── */
-
-interface SectionHeaderProps {
+/* ─── Social Card (High Conversion Style) ─── */
+interface SocialCardProps {
   icon: ReactNode;
   title: string;
-  subtitle?: string;
-}
-
-const SectionHeader: FC<SectionHeaderProps> = ({ icon, title, subtitle }) => (
-  <div className="flex flex-col items-center gap-2 mb-6">
-    <div className="flex items-center gap-2 text-purple-400">
-      {icon}
-      <h2 className="text-lg font-bold tracking-wide uppercase">{title}</h2>
-    </div>
-    {subtitle && (
-      <p className="text-xs text-gray-500 text-center">{subtitle}</p>
-    )}
-    <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-purple-500 to-transparent mt-1" />
-  </div>
-);
-
-/* ─── Portfolio Card Component ─── */
-
-interface PortfolioCardProps {
-  icon: ReactNode;
-  platform: string;
-  title: string;
-  description: string;
+  subtitle: string;
   href: string;
-  accentColor: string;
+  brandBg: string;
+  brandText: string;
 }
 
-const PortfolioCard: FC<PortfolioCardProps> = ({
-  icon,
-  platform,
-  title,
-  description,
-  href,
-  accentColor,
-}) => (
+const SocialCard: FC<SocialCardProps> = ({ icon, title, subtitle, href, brandBg, brandText }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group flex items-start gap-4 p-4 rounded-2xl bg-[#12121a] border border-[#1e1e34] hover:border-[#3a3a5a] transition-all duration-300 hover:scale-[1.01] active:scale-[0.98] cursor-pointer"
+    className="group flex items-center p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all active:scale-[0.98] cursor-pointer"
   >
-    <div
-      className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center ${accentColor}`}
-    >
+    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${brandBg} ${brandText}`}>
       {icon}
     </div>
-    <div className="flex-1 min-w-0">
-      <div className="flex items-center gap-2 mb-0.5">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
-          {platform}
-        </span>
-      </div>
-      <h3 className="text-sm font-semibold text-gray-100 truncate">{title}</h3>
-      <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">
-        {description}
-      </p>
+    <div className="ml-4 flex-1">
+      <h3 className="text-[15px] font-bold text-slate-900">{title}</h3>
+      <p className="text-[13px] text-slate-500 mt-0.5">{subtitle}</p>
     </div>
-    <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-400 transition-colors flex-shrink-0 mt-1" />
+    <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-slate-500 transition-colors" />
   </a>
 );
 
-/* ─── App Project Card Component ─── */
-
-interface AppProjectProps {
-  name: string;
-  description: string;
-  appStoreUrl?: string;
-  playStoreUrl: string;
-  gradient: string;
-}
-
-const AppProjectCard: FC<AppProjectProps> = ({
-  name,
-  description,
-  appStoreUrl,
-  playStoreUrl,
-  gradient,
-}) => (
-  <div
-    className={`relative overflow-hidden rounded-2xl border border-[#1e1e34] p-5 ${gradient}`}
-  >
-    {/* Subtle corner glow */}
-    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/[0.03] to-transparent rounded-bl-full" />
-
-    <div className="relative">
-      <div className="flex items-center gap-2 mb-2">
-        <Smartphone className="w-5 h-5 text-purple-400" />
-        <h3 className="text-base font-bold text-white">{name}</h3>
-      </div>
-      <p className="text-xs text-gray-400 mb-4 leading-relaxed">
-        {description}
-      </p>
-
-      <div className="flex gap-2">
-        {appStoreUrl && (
-          <a
-            href={appStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white text-xs font-medium hover:bg-white/15 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-          >
-            <AppleIcon className="w-4 h-4" />
-            App Store
-          </a>
-        )}
-        <a
-          href={playStoreUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white text-xs font-medium hover:bg-white/15 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
-        >
-          <PlayStoreIcon className="w-4 h-4" />
-          Play Market
-        </a>
-      </div>
-    </div>
-  </div>
-);
-
-/* ═══════════════════════════════════════════════
-   MAIN APP COMPONENT
-   ═══════════════════════════════════════════════ */
-
+/* ─── App Component ─── */
 const App: FC = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex justify-center">
-      {/* Background subtle radial gradient */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-green-900/10 rounded-full blur-[100px]" />
-      </div>
+    <div className="min-h-screen bg-[#f8f9fa] text-slate-900 font-sans">
+      
+      {/* Soft header background */}
+      <div className="absolute top-0 left-0 right-0 h-72 bg-gradient-to-b from-blue-50 to-[#f8f9fa] z-0" />
 
-      <main className="relative z-10 w-full max-w-md px-5 py-10 pb-20">
-        {/* ── 1. PROFILE HEADER ── */}
-        <section className="flex flex-col items-center text-center mb-8 animate-fade-in animate-delay-1">
-          {/* Avatar placeholder */}
-          <div className="w-28 h-28 rounded-full avatar-shimmer border-2 border-purple-500/30 flex items-center justify-center mb-5 ring-4 ring-purple-500/10">
-            <User className="w-12 h-12 text-gray-600" />
+      <main className="relative z-10 w-full max-w-[480px] mx-auto px-5 py-12 pb-24">
+        
+        {/* 1. Header (Trust & Authority) */}
+        <header className="flex flex-col items-center text-center mb-8">
+          <div className="relative mb-5">
+            <div className="w-24 h-24 rounded-full bg-white p-1 shadow-sm border border-slate-100 relative z-10">
+              <div className="w-full h-full rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                <User className="w-10 h-10 text-slate-400" />
+              </div>
+            </div>
+            {/* Trust badge */}
+            <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-1.5 rounded-full border-2 border-white shadow-sm z-20">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
           </div>
-
-          {/* Name */}
-          <h1 className="text-2xl font-extrabold text-white tracking-tight mb-2">
-            Ерболсын
-          </h1>
-
-          {/* Status / Description */}
-          <div className="flex items-center gap-1.5 mb-1">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span className="text-xs font-medium text-purple-400 uppercase tracking-wider">
-              AI Creator & Developer
-            </span>
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+          
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Ерболсын</h1>
+          
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold uppercase tracking-wide mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            AI Creator & Developer
           </div>
-          <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-            ИИ видео және креативті жарнамалар жасау
-            <br />
-            <span className="text-gray-500">IT-әзірлеуші</span>
+          
+          <p className="text-slate-600 text-sm max-w-[300px] leading-relaxed">
+            Сатуды көтеретін ИИ видеолар мен креативті жарнамалар жасаймын
           </p>
-        </section>
+        </header>
 
-        {/* ── 2. CTA BUTTONS ── */}
-        <section className="flex flex-col gap-3 mb-10 animate-fade-in animate-delay-2">
-          <LinkButton
+        {/* 2. BIG CTAs (High Conversion) */}
+        <div className="flex flex-col gap-3 mb-10">
+          <a
             href="https://wa.me/77000957565"
-            variant="primary"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-[#25D366] text-white font-bold text-[17px] rounded-2xl p-4 flex items-center justify-center gap-3 hover:bg-[#20bd5a] hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-[0_8px_24px_rgba(37,211,102,0.3)]"
           >
-            <MessageCircle className="w-5 h-5" />
-            <span>🎬 ИИ видео мен жарнамаға тапсырыс беру</span>
-            <ChevronRight className="w-4 h-4 ml-auto opacity-70" />
-          </LinkButton>
+            <MessageCircle className="w-6 h-6" />
+            ИИ видеоға тапсырыс беру
+          </a>
 
-          <LinkButton
+          <a
             href="https://wa.me/77000957565"
-            variant="secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-white text-slate-700 border border-slate-200 font-semibold rounded-2xl p-4 flex items-center justify-center gap-2 hover:bg-slate-50 hover:shadow-sm active:scale-[0.98] transition-all"
           >
-            <BookOpen className="w-5 h-5 text-purple-400" />
-            <span>📚 ИИ үйрену / Видеосабақтар алу</span>
-            <ChevronRight className="w-4 h-4 ml-auto opacity-50" />
-          </LinkButton>
-        </section>
-
-        {/* ── Divider ── */}
-        <div className="flex items-center gap-4 mb-10 animate-fade-in animate-delay-3">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#2a2a4a]" />
-          <Star className="w-3 h-3 text-gray-600" />
-          <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#2a2a4a]" />
+            <BookOpen className="w-5 h-5 text-blue-500" />
+            ИИ үйрену / Сабақтар
+          </a>
         </div>
 
-        {/* ── 3. PORTFOLIO SECTION ── */}
-        <section className="mb-10 animate-fade-in animate-delay-4">
-          <SectionHeader
-            icon={<Sparkles className="w-4 h-4" />}
-            title="Жұмыстарым & Портфолио"
-            subtitle="ИИ видеолар, жарнамалар, сабақтар"
-          />
-
+        {/* 3. Portfolio List */}
+        <div className="mb-10">
+          <h2 className="text-[13px] font-bold tracking-wider text-slate-400 uppercase mb-4 px-2">
+            Жұмыстарым мен Портфолио
+          </h2>
+          
           <div className="flex flex-col gap-3">
-            <PortfolioCard
-              icon={<TikTokIcon className="w-5 h-5 text-white" />}
-              platform="TikTok"
+            <SocialCard
+              icon={<TikTokIcon className="w-6 h-6" />}
               title="kingerbo"
-              description="ИИ жарнамалар мен клиенттерге жасалған видеолар"
+              subtitle="ИИ жарнамалар мен клиенттерге жасалған видеолар"
               href="https://www.tiktok.com/@kingerbo?_r=1&_t=ZS-99XThm0I05Y"
-              accentColor="bg-gradient-to-br from-pink-500/20 to-cyan-500/20"
+              brandBg="bg-slate-900"
+              brandText="text-white"
             />
-
-            <PortfolioCard
-              icon={<TikTokIcon className="w-5 h-5 text-white" />}
-              platform="TikTok"
+            <SocialCard
+              icon={<TikTokIcon className="w-6 h-6" />}
               title="aiqulaq"
-              description="Креативті ИИ видеолар"
+              subtitle="Креативті ИИ видеолар"
               href="https://www.tiktok.com/@aiqulaq?_r=1&_t=ZG-99XTgegBXDk"
-              accentColor="bg-gradient-to-br from-purple-500/20 to-pink-500/20"
+              brandBg="bg-slate-900"
+              brandText="text-white"
             />
-
-            <PortfolioCard
-              icon={<InstagramIcon className="w-5 h-5 text-white" />}
-              platform="Instagram"
+            <SocialCard
+              icon={<InstagramIcon className="w-6 h-6" />}
               title="yerbollsyn"
-              description="Портфолио және видеолар"
+              subtitle="Портфолио және видеолар"
               href="https://instagram.com/yerbollsyn"
-              accentColor="bg-gradient-to-br from-orange-500/20 to-pink-500/20"
+              brandBg="bg-gradient-to-tr from-orange-500 via-pink-500 to-purple-500"
+              brandText="text-white"
             />
-
-            <PortfolioCard
-              icon={<TelegramIcon className="w-5 h-5 text-white" />}
-              platform="Telegram"
+            <SocialCard
+              icon={<TelegramIcon className="w-6 h-6" />}
               title="aiqulaq"
-              description="ИИ құралдары, жасалу жолдары және тегін сабақтар"
+              subtitle="ИИ құралдары, жасалу жолдары және сабақтар"
               href="https://t.me/aiqulaq"
-              accentColor="bg-gradient-to-br from-blue-500/20 to-cyan-500/20"
+              brandBg="bg-[#0088cc]"
+              brandText="text-white"
             />
           </div>
-        </section>
-
-        {/* ── Divider ── */}
-        <div className="flex items-center gap-4 mb-10 animate-fade-in animate-delay-5">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#2a2a4a]" />
-          <Star className="w-3 h-3 text-gray-600" />
-          <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#2a2a4a]" />
         </div>
 
-        {/* ── 4. IT PROJECTS SECTION ── */}
-        <section className="mb-10 animate-fade-in animate-delay-6">
-          <SectionHeader
-            icon={<Smartphone className="w-4 h-4" />}
-            title="IT Жобаларым"
-            subtitle="Мобильді қосымшалар"
-          />
+        {/* 4. IT Projects Section */}
+        <div>
+          <h2 className="text-[13px] font-bold tracking-wider text-slate-400 uppercase mb-4 px-2">
+            IT Жобаларым (Қосымшалар)
+          </h2>
 
           <div className="flex flex-col gap-4">
-            <AppProjectCard
-              name="Arystap"
-              description="Арыс қаласына арналған супер-қосымша — OLX / Колеса / Крыша баламасы + AI агент."
-              appStoreUrl="https://apps.apple.com/kz/app/arystap/id6764302073"
-              playStoreUrl="https://play.google.com/store/apps/details?id=kz.erbom.arystap"
-              gradient="bg-gradient-to-br from-[#12121a] to-[#16162a]"
-            />
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Arystap</h3>
+              </div>
+              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                Арыс қаласына арналған супер-қосымша (OLX/Колеса/Крыша баламасы + AI агент).
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                <a href="https://apps.apple.com/kz/app/arystap/id6764302073" target="_blank" rel="noopener noreferrer" className="bg-slate-900 text-white rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-800 transition-colors active:scale-[0.98]">
+                  <AppleIcon className="w-4 h-4" /> App Store
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=kz.erbom.arystap" target="_blank" rel="noopener noreferrer" className="bg-slate-100 text-slate-700 rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-200 transition-colors active:scale-[0.98]">
+                  <PlayStoreIcon className="w-4 h-4" /> Google Play
+                </a>
+              </div>
+            </div>
 
-            <AppProjectCard
-              name="Qoramsap"
-              description="Қарызды есептеу және басқару мобильді қосымшасы + AI агент."
-              playStoreUrl="https://play.google.com/store/apps/details?id=kz.qoramsap.app"
-              gradient="bg-gradient-to-br from-[#12121a] to-[#1a1220]"
-            />
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
+                  <Smartphone className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Qoramsap</h3>
+              </div>
+              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                Қарызды есептеу және басқару мобильді қосымшасы (+ AI агент).
+              </p>
+              <a href="https://play.google.com/store/apps/details?id=kz.qoramsap.app" target="_blank" rel="noopener noreferrer" className="w-full bg-slate-100 text-slate-700 rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-200 transition-colors active:scale-[0.98]">
+                <PlayStoreIcon className="w-4 h-4" /> Google Play
+              </a>
+            </div>
           </div>
-        </section>
+        </div>
 
-        {/* ── Footer ── */}
-        <footer className="text-center animate-fade-in animate-delay-8">
-          <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent mx-auto mb-4" />
-          <p className="text-[10px] text-gray-600 tracking-widest uppercase">
-            © {new Date().getFullYear()} Ерболсын · Барлық құқықтар қорғалған
-          </p>
-        </footer>
       </main>
     </div>
   );
