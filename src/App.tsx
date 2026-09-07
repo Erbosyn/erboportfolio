@@ -1,15 +1,13 @@
 import type { FC, ReactNode } from "react";
 import {
-  MessageCircle,
-  BookOpen,
-  User,
-  Sparkles,
-  Smartphone,
-  ChevronRight,
-  CheckCircle2
+  ArrowRight,
+  Video,
+  Code2,
+  ExternalLink,
+  MessageSquare
 } from "lucide-react";
 
-/* ─── Custom SVG Icons ─── */
+/* ─── Minimalist Monochrome Icons ─── */
 const TikTokIcon: FC<{ className?: string }> = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.84a4.84 4.84 0 01-1-.15z" />
@@ -34,181 +32,136 @@ const AppleIcon: FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-const PlayStoreIcon: FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.801 8.99l-2.302 2.302-8.635-8.634z" />
-  </svg>
-);
-
-/* ─── Social Card (High Conversion Style) ─── */
-interface SocialCardProps {
-  icon: ReactNode;
-  title: string;
-  subtitle: string;
-  href: string;
-  brandBg: string;
-  brandText: string;
-}
-
-const SocialCard: FC<SocialCardProps> = ({ icon, title, subtitle, href, brandBg, brandText }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group flex items-center p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all active:scale-[0.98] cursor-pointer"
-  >
-    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${brandBg} ${brandText}`}>
-      {icon}
-    </div>
-    <div className="ml-4 flex-1">
-      <h3 className="text-[15px] font-bold text-slate-900">{title}</h3>
-      <p className="text-[13px] text-slate-500 mt-0.5">{subtitle}</p>
-    </div>
-    <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-slate-500 transition-colors" />
-  </a>
-);
+/* ─── Ultra-Premium Base Styles ─── */
+// pure black bg, thin borders, high contrast
+const cardClass = "group block w-full bg-[#0a0a0a] border border-[#1a1a1a] hover:border-[#333] hover:bg-[#111] transition-all duration-300 rounded-[20px] p-5 active:scale-[0.98]";
 
 /* ─── App Component ─── */
 const App: FC = () => {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-slate-900 font-sans">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black">
       
-      {/* Soft header background */}
-      <div className="absolute top-0 left-0 right-0 h-72 bg-gradient-to-b from-blue-50 to-[#f8f9fa] z-0" />
+      {/* 
+        Subtle grain/noise overlay (CSS purely visual) 
+        Creates that expensive matte texture
+      */}
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
 
-      <main className="relative z-10 w-full max-w-[480px] mx-auto px-5 py-12 pb-24">
+      <main className="relative z-10 w-full max-w-[440px] mx-auto px-6 py-16 pb-32">
         
-        {/* 1. Header (Trust & Authority) */}
-        <header className="flex flex-col items-center text-center mb-8">
-          <div className="relative mb-5">
-            <div className="w-24 h-24 rounded-full bg-white p-1 shadow-sm border border-slate-100 relative z-10">
-              <div className="w-full h-full rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
-                <User className="w-10 h-10 text-slate-400" />
-              </div>
-            </div>
-            {/* Trust badge */}
-            <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white p-1.5 rounded-full border-2 border-white shadow-sm z-20">
-              <CheckCircle2 className="w-4 h-4" />
-            </div>
-          </div>
-          
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Ерболсын</h1>
-          
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-semibold uppercase tracking-wide mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            AI Creator & Developer
-          </div>
-          
-          <p className="text-slate-600 text-sm max-w-[300px] leading-relaxed">
-            Сатуды көтеретін ИИ видеолар мен креативті жарнамалар жасаймын
+        {/* 1. Ultra-Minimal Header */}
+        <header className="mb-12">
+          {/* Text-focused, typography-first approach */}
+          <h1 className="text-5xl font-extrabold tracking-tighter text-white mb-4">
+            Ерболсын.
+          </h1>
+          <p className="text-[#888] text-[17px] leading-relaxed tracking-tight font-medium">
+            AI Video Creator & IT Developer. <br/>
+            Креативті контент пен қосымшалар.
           </p>
         </header>
 
-        {/* 2. BIG CTAs (High Conversion) */}
-        <div className="flex flex-col gap-3 mb-10">
+        {/* 2. Main High-End CTAs */}
+        <div className="flex flex-col gap-3 mb-14">
           <a
             href="https://wa.me/77000957565"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-[#25D366] text-white font-bold text-[17px] rounded-2xl p-4 flex items-center justify-center gap-3 hover:bg-[#20bd5a] hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-[0_8px_24px_rgba(37,211,102,0.3)]"
+            className="w-full h-16 bg-white text-black font-semibold text-[17px] tracking-tight rounded-full flex items-center justify-between px-6 hover:scale-[1.02] active:scale-[0.97] transition-transform duration-300"
           >
-            <MessageCircle className="w-6 h-6" />
-            ИИ видеоға тапсырыс беру
+            <span className="flex items-center gap-3">
+              <MessageSquare className="w-5 h-5" />
+              ИИ видеоға тапсырыс
+            </span>
+            <ArrowRight className="w-5 h-5 text-black/50" />
           </a>
 
           <a
             href="https://wa.me/77000957565"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-white text-slate-700 border border-slate-200 font-semibold rounded-2xl p-4 flex items-center justify-center gap-2 hover:bg-slate-50 hover:shadow-sm active:scale-[0.98] transition-all"
+            className="w-full h-16 bg-transparent border border-[#222] text-[#ccc] font-medium text-[16px] tracking-tight rounded-full flex items-center justify-between px-6 hover:bg-[#111] hover:text-white hover:border-[#444] hover:scale-[1.02] active:scale-[0.97] transition-all duration-300"
           >
-            <BookOpen className="w-5 h-5 text-blue-500" />
-            ИИ үйрену / Сабақтар
+            <span className="flex items-center gap-3">
+              <Video className="w-5 h-5 text-[#666]" />
+              ИИ үйрену / Сабақтар
+            </span>
+            <ArrowRight className="w-5 h-5 text-[#444]" />
           </a>
         </div>
 
-        {/* 3. Portfolio List */}
-        <div className="mb-10">
-          <h2 className="text-[13px] font-bold tracking-wider text-slate-400 uppercase mb-4 px-2">
-            Жұмыстарым мен Портфолио
-          </h2>
+        {/* 3. Social & Portfolio (Grid) */}
+        <div className="mb-14">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-white"></div>
+            <h2 className="text-xs font-bold tracking-[0.2em] text-[#666] uppercase">Портфолио</h2>
+          </div>
           
-          <div className="flex flex-col gap-3">
-            <SocialCard
-              icon={<TikTokIcon className="w-6 h-6" />}
-              title="kingerbo"
-              subtitle="ИИ жарнамалар мен клиенттерге жасалған видеолар"
-              href="https://www.tiktok.com/@kingerbo?_r=1&_t=ZS-99XThm0I05Y"
-              brandBg="bg-slate-900"
-              brandText="text-white"
-            />
-            <SocialCard
-              icon={<TikTokIcon className="w-6 h-6" />}
-              title="aiqulaq"
-              subtitle="Креативті ИИ видеолар"
-              href="https://www.tiktok.com/@aiqulaq?_r=1&_t=ZG-99XTgegBXDk"
-              brandBg="bg-slate-900"
-              brandText="text-white"
-            />
-            <SocialCard
-              icon={<InstagramIcon className="w-6 h-6" />}
-              title="yerbollsyn"
-              subtitle="Портфолио және видеолар"
-              href="https://instagram.com/yerbollsyn"
-              brandBg="bg-gradient-to-tr from-orange-500 via-pink-500 to-purple-500"
-              brandText="text-white"
-            />
-            <SocialCard
-              icon={<TelegramIcon className="w-6 h-6" />}
-              title="aiqulaq"
-              subtitle="ИИ құралдары, жасалу жолдары және сабақтар"
-              href="https://t.me/aiqulaq"
-              brandBg="bg-[#0088cc]"
-              brandText="text-white"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <a href="https://www.tiktok.com/@kingerbo?_r=1&_t=ZS-99XThm0I05Y" target="_blank" rel="noopener noreferrer" className={cardClass}>
+              <TikTokIcon className="w-6 h-6 text-white mb-6" />
+              <h3 className="text-[15px] font-semibold text-white tracking-tight">kingerbo</h3>
+              <p className="text-[12px] text-[#777] mt-1 leading-snug">ИИ жарнамалар</p>
+            </a>
+            
+            <a href="https://www.tiktok.com/@aiqulaq?_r=1&_t=ZG-99XTgegBXDk" target="_blank" rel="noopener noreferrer" className={cardClass}>
+              <TikTokIcon className="w-6 h-6 text-white mb-6" />
+              <h3 className="text-[15px] font-semibold text-white tracking-tight">aiqulaq</h3>
+              <p className="text-[12px] text-[#777] mt-1 leading-snug">Креативті ИИ</p>
+            </a>
+
+            <a href="https://instagram.com/yerbollsyn" target="_blank" rel="noopener noreferrer" className={cardClass}>
+              <InstagramIcon className="w-6 h-6 text-white mb-6" />
+              <h3 className="text-[15px] font-semibold text-white tracking-tight">yerbollsyn</h3>
+              <p className="text-[12px] text-[#777] mt-1 leading-snug">Блог & видеолар</p>
+            </a>
+
+            <a href="https://t.me/aiqulaq" target="_blank" rel="noopener noreferrer" className={cardClass}>
+              <TelegramIcon className="w-6 h-6 text-white mb-6" />
+              <h3 className="text-[15px] font-semibold text-white tracking-tight">aiqulaq (TG)</h3>
+              <p className="text-[12px] text-[#777] mt-1 leading-snug">Құралдар & сабақтар</p>
+            </a>
           </div>
         </div>
 
         {/* 4. IT Projects Section */}
         <div>
-          <h2 className="text-[13px] font-bold tracking-wider text-slate-400 uppercase mb-4 px-2">
-            IT Жобаларым (Қосымшалар)
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-white"></div>
+            <h2 className="text-xs font-bold tracking-[0.2em] text-[#666] uppercase">IT Қосымшалар</h2>
+          </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
-                  <Smartphone className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">Arystap</h3>
+          <div className="flex flex-col gap-3">
+            <div className="w-full bg-[#0a0a0a] border border-[#1a1a1a] rounded-[24px] p-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6">
+                <Code2 className="w-6 h-6 text-[#333]" />
               </div>
-              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
-                Арыс қаласына арналған супер-қосымша (OLX/Колеса/Крыша баламасы + AI агент).
+              <h3 className="text-xl font-bold tracking-tight text-white mb-2">Arystap</h3>
+              <p className="text-[#888] text-[14px] leading-relaxed max-w-[85%] mb-8">
+                Арыс қаласына арналған супер-қосымша (OLX/Крыша баламасы + AI агент).
               </p>
-              <div className="grid grid-cols-2 gap-2">
-                <a href="https://apps.apple.com/kz/app/arystap/id6764302073" target="_blank" rel="noopener noreferrer" className="bg-slate-900 text-white rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-800 transition-colors active:scale-[0.98]">
+              
+              <div className="flex items-center gap-3">
+                <a href="https://apps.apple.com/kz/app/arystap/id6764302073" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#111] border border-[#222] hover:bg-[#1a1a1a] transition-colors rounded-full px-5 py-2.5 text-[13px] font-medium text-white">
                   <AppleIcon className="w-4 h-4" /> App Store
                 </a>
-                <a href="https://play.google.com/store/apps/details?id=kz.erbom.arystap" target="_blank" rel="noopener noreferrer" className="bg-slate-100 text-slate-700 rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-200 transition-colors active:scale-[0.98]">
-                  <PlayStoreIcon className="w-4 h-4" /> Google Play
+                <a href="https://play.google.com/store/apps/details?id=kz.erbom.arystap" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#111] border border-[#222] hover:bg-[#1a1a1a] transition-colors rounded-full px-5 py-2.5 text-[13px] font-medium text-white">
+                  <ExternalLink className="w-3.5 h-3.5 text-[#888]" /> Play Market
                 </a>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
-                  <Smartphone className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">Qoramsap</h3>
-              </div>
-              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+            <div className="w-full bg-[#0a0a0a] border border-[#1a1a1a] rounded-[24px] p-6 relative overflow-hidden">
+              <h3 className="text-xl font-bold tracking-tight text-white mb-2">Qoramsap</h3>
+              <p className="text-[#888] text-[14px] leading-relaxed max-w-[85%] mb-8">
                 Қарызды есептеу және басқару мобильді қосымшасы (+ AI агент).
               </p>
-              <a href="https://play.google.com/store/apps/details?id=kz.qoramsap.app" target="_blank" rel="noopener noreferrer" className="w-full bg-slate-100 text-slate-700 rounded-xl py-3 flex items-center justify-center gap-2 text-[13px] font-semibold hover:bg-slate-200 transition-colors active:scale-[0.98]">
-                <PlayStoreIcon className="w-4 h-4" /> Google Play
-              </a>
+              
+              <div className="flex items-center gap-3">
+                <a href="https://play.google.com/store/apps/details?id=kz.qoramsap.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#111] border border-[#222] hover:bg-[#1a1a1a] transition-colors rounded-full px-5 py-2.5 text-[13px] font-medium text-white">
+                  <ExternalLink className="w-3.5 h-3.5 text-[#888]" /> Play Market
+                </a>
+              </div>
             </div>
           </div>
         </div>
