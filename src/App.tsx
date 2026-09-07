@@ -40,218 +40,173 @@ const GooglePlayIcon: FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-/* ─── Glass card base class ─── */
-const glassCard =
-  "block w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl p-5 hover:bg-white/[0.08] transition-all duration-300";
 
 const App: FC = () => {
   return (
     <div className="relative min-h-screen bg-[#0a0a0a] text-neutral-300 font-sans overflow-hidden selection:bg-white/20">
 
-      {/* ── Фоновые свечения для глубины ── */}
-      {/* Главное фиолетовое пятно — сверху по центру */}
+      {/* ── Фоновые свечения ── */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-purple-500/15 blur-[120px] rounded-full pointer-events-none" />
-      {/* Синее — снизу справа */}
       <div className="absolute bottom-32 right-0 w-[220px] h-[220px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" />
-      {/* Розовое — снизу слева */}
       <div className="absolute bottom-0 left-0 w-[180px] h-[180px] bg-pink-600/8 blur-[90px] rounded-full pointer-events-none" />
 
-      <main className="relative z-10 w-full max-w-[460px] mx-auto px-5 py-12 pb-28">
+      {/* px-3 — жіңішке жан-жақ, телефонға оптималды */}
+      <main className="relative z-10 w-full max-w-[430px] mx-auto px-3 py-10 pb-24">
 
         {/* ─── Профиль ─── */}
-        <header className="flex flex-col items-center text-center mb-10">
-          {/* Аватар с градиентным кольцом */}
-          <div className="relative mb-6">
+        <header className="flex flex-col items-center text-center mb-8">
+          <div className="relative mb-5">
             <div className="absolute inset-0 rounded-full bg-purple-500/20 blur-2xl scale-150 pointer-events-none" />
-            <div className="relative w-28 h-28 rounded-full p-[2px] bg-gradient-to-br from-white/20 via-white/5 to-transparent">
+            <div className="relative w-24 h-24 rounded-full p-[2px] bg-gradient-to-br from-white/20 via-white/5 to-transparent">
               <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-xl">
                 <img src="/avatar.jpg" alt="Ерболсын" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
-
-          {/* Градиентное имя — белый → серый (Apple style) */}
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-500 text-transparent bg-clip-text mb-2 tracking-tight">
+          <h1 className="text-[28px] font-bold bg-gradient-to-r from-white to-gray-500 text-transparent bg-clip-text mb-1.5 tracking-tight">
             Ерболсын
           </h1>
-          <p className="text-neutral-500 text-[14px] font-medium tracking-wide">
+          <p className="text-neutral-500 text-[13px] font-medium tracking-wide">
             AI Video Creator · IT Developer
           </p>
         </header>
 
         {/* ─── CTA Кнопки ─── */}
-        <div className="flex flex-col gap-3 mb-12">
-          {/* PRIMARY — Apple-style белая кнопка */}
+        <div className="flex flex-col gap-2.5 mb-8">
           <a
             href="https://wa.me/77000957565"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-white text-black font-semibold rounded-2xl py-4 flex items-center justify-center gap-2 hover:bg-gray-100 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-white/10"
+            className="w-full bg-white text-black font-semibold rounded-2xl py-3.5 flex items-center justify-center gap-2 hover:bg-gray-100 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-white/10 text-[15px]"
           >
             <MessageCircle className="w-5 h-5" />
             🎬 ИИ видеоға тапсырыс беру
           </a>
-
-          {/* SECONDARY — Glassmorphism */}
           <a
             href="https://wa.me/77000957565"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-white/[0.05] border border-white/10 backdrop-blur-xl rounded-2xl py-4 flex items-center justify-center gap-2 font-semibold text-[15px] text-white hover:bg-white/[0.10] active:scale-[0.98] transition-all duration-300"
+            className="w-full bg-white/[0.05] border border-white/10 backdrop-blur-xl rounded-2xl py-3.5 flex items-center justify-center gap-2 font-semibold text-[14px] text-white hover:bg-white/[0.10] active:scale-[0.98] transition-all duration-300"
           >
             <PlayCircle className="w-5 h-5 text-neutral-400" />
             ИИ үйрену / Сабақтар
           </a>
         </div>
 
-        {/* ─── Портфолио ─── */}
-        <div className="mb-12">
-          <h2 className="text-[11px] font-bold tracking-[0.2em] text-neutral-600 uppercase mb-5 px-1">
+        {/* ─── Портфолио — горизонталь тіктөртбұрышты карточкалар ─── */}
+        <div className="mb-8">
+          <h2 className="text-[10px] font-bold tracking-[0.2em] text-neutral-600 uppercase mb-3 px-1">
             Портфолио
           </h2>
+          <div className="flex flex-col gap-2">
 
-          <div className="grid grid-cols-2 gap-3">
-
-            {/* TikTok — kingerbo */}
-            <a
-              href="https://www.tiktok.com/@kingerbo?_r=1&_t=ZS-99XThm0I05Y"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={glassCard}
-            >
-              {/* TikTok black badge */}
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4 border border-white/5 bg-black/70">
-                <TikTokIcon className="w-5 h-5 text-white" />
+            <a href="https://www.tiktok.com/@kingerbo?_r=1&_t=ZS-99XThm0I05Y" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-3 hover:bg-white/[0.08] active:scale-[0.98] transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/5 bg-black/70 flex-shrink-0">
+                <TikTokIcon className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest block mb-0.5">TikTok</span>
-              <h3 className="text-[15px] font-bold text-white tracking-tight mb-1">kingerbo</h3>
-              <p className="text-[12px] text-neutral-500 font-medium leading-tight">ИИ жарнама</p>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-bold text-neutral-600 uppercase tracking-widest block leading-none mb-0.5">TikTok</span>
+                <h3 className="text-[14px] font-bold text-white tracking-tight">kingerbo</h3>
+                <p className="text-[11px] text-neutral-500">ИИ жарнама</p>
+              </div>
+              <svg className="w-3.5 h-3.5 text-neutral-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </a>
 
-            {/* TikTok — aiqulaq */}
-            <a
-              href="https://www.tiktok.com/@aiqulaq?_r=1&_t=ZG-99XTgegBXDk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={glassCard}
-            >
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4 border border-white/5 bg-black/70">
-                <TikTokIcon className="w-5 h-5 text-white" />
+            <a href="https://www.tiktok.com/@aiqulaq?_r=1&_t=ZG-99XTgegBXDk" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-3 hover:bg-white/[0.08] active:scale-[0.98] transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/5 bg-black/70 flex-shrink-0">
+                <TikTokIcon className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest block mb-0.5">TikTok</span>
-              <h3 className="text-[15px] font-bold text-white tracking-tight mb-1">aiqulaq</h3>
-              <p className="text-[12px] text-neutral-500 font-medium leading-tight">Креативті ИИ</p>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-bold text-neutral-600 uppercase tracking-widest block leading-none mb-0.5">TikTok</span>
+                <h3 className="text-[14px] font-bold text-white tracking-tight">aiqulaq</h3>
+                <p className="text-[11px] text-neutral-500">Креативті ИИ</p>
+              </div>
+              <svg className="w-3.5 h-3.5 text-neutral-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </a>
 
-            {/* Instagram */}
-            <a
-              href="https://instagram.com/yerbollsyn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={glassCard}
-            >
-              {/* Instagram brand gradient badge */}
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4 border border-white/5 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045]">
-                <InstagramIcon className="w-5 h-5 text-white" />
+            <a href="https://instagram.com/yerbollsyn" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-3 hover:bg-white/[0.08] active:scale-[0.98] transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/5 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex-shrink-0">
+                <InstagramIcon className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest block mb-0.5">Instagram</span>
-              <h3 className="text-[15px] font-bold text-white tracking-tight mb-1">yerbollsyn</h3>
-              <p className="text-[12px] text-neutral-500 font-medium leading-tight">Блог &amp; жұмыстар</p>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-bold text-neutral-600 uppercase tracking-widest block leading-none mb-0.5">Instagram</span>
+                <h3 className="text-[14px] font-bold text-white tracking-tight">yerbollsyn</h3>
+                <p className="text-[11px] text-neutral-500">Блог &amp; жұмыстар</p>
+              </div>
+              <svg className="w-3.5 h-3.5 text-neutral-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </a>
 
-            {/* Telegram */}
-            <a
-              href="https://t.me/aiqulaq"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={glassCard}
-            >
-              {/* Telegram brand blue badge */}
-              <div className="w-11 h-11 rounded-2xl flex items-center justify-center mb-4 border border-white/5 bg-[#229ED9]/80">
-                <TelegramIcon className="w-5 h-5 text-white" />
+            <a href="https://t.me/aiqulaq" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl px-4 py-3 hover:bg-white/[0.08] active:scale-[0.98] transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center border border-white/5 bg-[#229ED9]/80 flex-shrink-0">
+                <TelegramIcon className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest block mb-0.5">Telegram</span>
-              <h3 className="text-[15px] font-bold text-white tracking-tight mb-1">aiqulaq</h3>
-              <p className="text-[12px] text-neutral-500 font-medium leading-tight">ИИ құралдар</p>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-bold text-neutral-600 uppercase tracking-widest block leading-none mb-0.5">Telegram</span>
+                <h3 className="text-[14px] font-bold text-white tracking-tight">aiqulaq</h3>
+                <p className="text-[11px] text-neutral-500">ИИ құралдар</p>
+              </div>
+              <svg className="w-3.5 h-3.5 text-neutral-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
             </a>
+
           </div>
         </div>
 
         {/* ─── IT Қосымшалар ─── */}
         <div>
-          <h2 className="text-[11px] font-bold tracking-[0.2em] text-neutral-600 uppercase mb-5 px-1">
+          <h2 className="text-[10px] font-bold tracking-[0.2em] text-neutral-600 uppercase mb-3 px-1">
             IT Қосымшалар
           </h2>
+          <div className="flex flex-col gap-2">
 
-          <div className="flex flex-col gap-3">
-
-            {/* Arystap */}
-            <div className={`relative overflow-hidden ${glassCard}`}>
-              {/* Top shimmer line */}
+            <div className="relative overflow-hidden w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl p-4 hover:bg-white/[0.08] transition-all duration-300">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center border border-white/10 flex-shrink-0">
-                  <Smartphone className="w-5 h-5 text-neutral-200" />
+              <div className="flex items-center gap-3 mb-2.5">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center border border-white/10 flex-shrink-0">
+                  <Smartphone className="w-4 h-4 text-neutral-200" />
                 </div>
                 <div>
-                  <h3 className="text-[17px] font-bold text-white tracking-tight leading-tight">Arystap</h3>
-                  <p className="text-[11px] text-neutral-600 font-medium uppercase tracking-widest">Mobile App</p>
+                  <h3 className="text-[15px] font-bold text-white tracking-tight leading-tight">Arystap</h3>
+                  <p className="text-[10px] text-neutral-600 font-medium uppercase tracking-widest">Mobile App</p>
                 </div>
               </div>
-
-              <p className="text-[13px] text-neutral-400 font-medium leading-relaxed mb-5">
+              <p className="text-[12px] text-neutral-500 font-medium leading-relaxed mb-3">
                 Арыс қаласына арналған супер-қосымша — OLX/Крыша баламасы + AI агент.
               </p>
-
               <div className="flex items-center gap-2">
-                <a
-                  href="https://apps.apple.com/kz/app/arystap/id6764302073"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-3 text-[12px] font-semibold text-white active:scale-95"
-                >
-                  <AppleIcon className="w-4 h-4" />
+                <a href="https://apps.apple.com/kz/app/arystap/id6764302073" target="_blank" rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-2.5 text-[12px] font-semibold text-white active:scale-95">
+                  <AppleIcon className="w-3.5 h-3.5" />
                   App Store
                 </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=kz.erbom.arystap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-3 text-[12px] font-semibold text-white active:scale-95"
-                >
-                  <GooglePlayIcon className="w-3.5 h-3.5" />
+                <a href="https://play.google.com/store/apps/details?id=kz.erbom.arystap" target="_blank" rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-2.5 text-[12px] font-semibold text-white active:scale-95">
+                  <GooglePlayIcon className="w-3 h-3" />
                   Play Market
                 </a>
               </div>
             </div>
 
-            {/* Qoramsap */}
-            <div className={`relative overflow-hidden ${glassCard}`}>
-              {/* Top shimmer line */}
+            <div className="relative overflow-hidden w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl rounded-2xl p-4 hover:bg-white/[0.08] transition-all duration-300">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center border border-white/10 flex-shrink-0">
-                  <Smartphone className="w-5 h-5 text-neutral-200" />
+              <div className="flex items-center gap-3 mb-2.5">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] flex items-center justify-center border border-white/10 flex-shrink-0">
+                  <Smartphone className="w-4 h-4 text-neutral-200" />
                 </div>
                 <div>
-                  <h3 className="text-[17px] font-bold text-white tracking-tight leading-tight">Qoramsap</h3>
-                  <p className="text-[11px] text-neutral-600 font-medium uppercase tracking-widest">Mobile App</p>
+                  <h3 className="text-[15px] font-bold text-white tracking-tight leading-tight">Qoramsap</h3>
+                  <p className="text-[10px] text-neutral-600 font-medium uppercase tracking-widest">Mobile App</p>
                 </div>
               </div>
-
-              <p className="text-[13px] text-neutral-400 font-medium leading-relaxed mb-5">
+              <p className="text-[12px] text-neutral-500 font-medium leading-relaxed mb-3">
                 Қарызды есептеу және басқару мобильді қосымшасы — + AI агент.
               </p>
-
-              <a
-                href="https://play.google.com/store/apps/details?id=kz.qoramsap.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-3 text-[12px] font-semibold text-white active:scale-95"
-              >
-                <GooglePlayIcon className="w-3.5 h-3.5" />
+              <a href="https://play.google.com/store/apps/details?id=kz.qoramsap.app" target="_blank" rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 transition-all duration-200 rounded-xl py-2.5 text-[12px] font-semibold text-white active:scale-95">
+                <GooglePlayIcon className="w-3 h-3" />
                 Play Market
               </a>
             </div>
@@ -265,3 +220,5 @@ const App: FC = () => {
 };
 
 export default App;
+
+
