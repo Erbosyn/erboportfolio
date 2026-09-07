@@ -84,8 +84,8 @@ const App: FC = () => {
         {/* 1. Profile Header */}
         <header className="flex flex-col items-center text-center mb-10">
           <div className="w-28 h-28 rounded-full bg-white/[0.08] p-1.5 border border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.1)] backdrop-blur-md mb-6">
-            <div className="w-full h-full rounded-full bg-gradient-to-tr from-white/10 to-white/5 flex items-center justify-center overflow-hidden">
-              <User className="w-12 h-12 text-white/80" />
+            <div className="w-full h-full rounded-full bg-gradient-to-tr from-white/10 to-white/5 overflow-hidden">
+              <img src="/avatar.jpg" alt="Ерболсын" className="w-full h-full object-cover" />
             </div>
           </div>
           
