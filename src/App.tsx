@@ -1,7 +1,6 @@
-import type { FC, ReactNode } from "react";
+import type { FC } from "react";
 import {
   ArrowRight,
-  User,
   MessageCircle,
   PlayCircle,
   Smartphone,
@@ -33,11 +32,6 @@ const AppleIcon: FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-const PlayStoreIcon: FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.801 8.99l-2.302 2.302-8.635-8.634z" />
-  </svg>
-);
 
 /* ─── Apple Glassmorphism Card Style ─── */
 const glassCard = `
