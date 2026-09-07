@@ -103,32 +103,44 @@ const App: FC = () => {
             </div>
           </a>
 
-          {/* SECONDARY — ИИ Сабақтар */}
+          {/* SECONDARY — ИИ Сабақтар (PREMIUM CARD) */}
           <a
-            href="https://wa.me/77000957565"
+            href="https://wa.me/77000957565?text=%D0%A1%C3%99%D0%BB%D0%B5%D0%BC%21+%D0%96%D0%B0%D1%81%D0%B0%D0%BD%D0%B4%D0%B0+%D0%B6%D0%B0%D1%81%D0%B0%D0%BB%D0%BC%D0%B0%D2%9B%D1%88%D1%8B+%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%DB%AF%2C+%D0%96%D0%98+%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE+%D0%B6%D0%B0%D1%81%D0%B0%D0%BF+%D2%AF%D0%B9%D1%80%D0%B5%D0%BD%D0%B3%DB%B3%D0%BC+%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%DB%B3%21+%F0%9F%9A%80"
             target="_blank"
             rel="noopener noreferrer"
             className="relative w-full overflow-hidden group"
           >
-            {/* Purple glow halo */}
-            <div className="absolute inset-0 rounded-2xl bg-purple-500/10 blur-xl scale-105 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            <div className="relative w-full bg-white/[0.06] border border-white/15 backdrop-blur-xl text-white rounded-2xl py-5 px-5 flex items-center gap-4 active:scale-[0.98] transition-transform duration-150">
-              {/* Icon circle */}
-              <div className="w-11 h-11 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center flex-shrink-0">
-                <PlayCircle className="w-6 h-6 text-white" />
+            {/* Animated glow behind card */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600/40 via-violet-500/30 to-blue-600/40 blur-2xl scale-110 opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            {/* Card body — gradient border trick */}
+            <div className="relative w-full rounded-2xl p-[1.5px] bg-gradient-to-br from-purple-500/60 via-violet-400/30 to-blue-500/40">
+              <div className="w-full bg-gradient-to-br from-purple-900/60 via-[#0a0a0a]/80 to-blue-900/40 backdrop-blur-xl rounded-[14px] py-5 px-5 flex items-center gap-4 active:scale-[0.98] transition-transform duration-150">
+
+                {/* Icon — крупный, светящийся */}
+                <div className="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center flex-shrink-0">
+                  <PlayCircle className="w-7 h-7 text-purple-300" />
+                </div>
+
+                <div className="flex flex-col items-start flex-1">
+                  {/* Badge */}
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="text-[9px] font-bold text-purple-400 uppercase tracking-widest">Онлайн сабақтар</span>
+                  </div>
+                  <span className="text-[17px] font-bold text-white leading-tight tracking-tight">
+                    ИИ үйрену / Сабақтар
+                  </span>
+                  <span className="text-[12px] text-purple-300/70 font-medium mt-0.5">
+                    ЖИ видео жасап үйренгім келеді 🚀
+                  </span>
+                </div>
+
+                {/* Arrow */}
+                <svg className="w-5 h-5 text-purple-400/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                </svg>
+
               </div>
-              <div className="flex flex-col items-start">
-                <span className="text-[16px] font-bold text-white leading-tight tracking-tight">
-                  ИИ үйрену / Сабақтар
-                </span>
-                <span className="text-[12px] text-neutral-500 font-medium mt-0.5">
-                  Ақылды бол, ИИ-ды меңгер
-                </span>
-              </div>
-              {/* Arrow */}
-              <svg className="w-5 h-5 text-neutral-600 ml-auto flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-              </svg>
             </div>
           </a>
 
